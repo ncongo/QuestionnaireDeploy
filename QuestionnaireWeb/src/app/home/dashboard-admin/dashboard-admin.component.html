@@ -1,0 +1,26 @@
+<div class="container">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="admin-panel/questionnaires">MOPQuestionnaires</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="admin-panel/questionnaires">Questionnares</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>{{ currentUser.username }}</a></li>
+      <li><a (click)="logout()" style="cursor: pointer"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+  <app-alert></app-alert>
+  <app-modal></app-modal>
+</div>
+
+<div class="footer">
+
+</div>

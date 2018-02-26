@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary pull-right" [routerLink]="['/admin-panel/answer', questionId]">Add new</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Answer Text</th>
+        <th style="width: 10%;"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let answer of answersList; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{answer.AnswerText}}</td>
+        <td><button *ngIf="answer.AnswerId != 1 && answer.AnswerId != 2" class="btn" (click)="deleteAnswer(answer.QuestionsAnswersId)"><span class="glyphicon glyphicon-trash"></span></button></td>
+      </tr>
+      <tr *ngIf="!answersList || answersList.length == 0" style="text-align:center">
+        <td colspan="3">No results</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="button" style="display: none;" id="openModalButton" [hidden]="true" class="btn btn-info btn-xs" data-toggle="modal" data-target="#confirmationModal" data-backdrop="static" data-keyboard="false" ></button>
+  <app-modal (confirmedDelete)="confirmedDelete($event)"></app-modal>
+</div>

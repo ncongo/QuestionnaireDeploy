@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <!--<form name="form" (ngSubmit)="f.form.valid && saveQuestionnaire()" #f="ngForm" novalidate>-->
+  <div *ngFor="let question of questionnaire | groupBy:'QuestionText'; let i = index">
+     <h5>{{question.key}}</h5>
+     <div *ngFor="let answer of question.value">
+       <div *ngIf="answer.QuestionTypeId == 1">
+         <textarea class="form-control" rows="6" cols="100" [disabled]="answer.isAnsweredQuestionnaire" [(ngModel)]="answer.TextAnswer" (input)="onTextChange(answer.QuestionsAnswersId, $event.target.value)">{{answer.TextAnswer}}</textarea>
+       </div>
+       <div *ngIf="answer.QuestionTypeId == 2"><!--TODO: Change to enum-->
+         <label>
+           <input [disabled]="answer.isAnsweredQuestionnaire" [value]='answer.QuestionsAnswersId' type="radio" name="radioGroup_{{answer.QuestionId}}" id="radioGroup2_{{answer.QuestionId}}" [(ngModel)]="answer.isAnsweredQuestion && answer.QuestionsAnswersId" (change)="onSelectionChange(answer)" >
+           {{answer.AnswerText}}
+         </label>
+       </div>
+       <div *ngIf="answer.QuestionTypeId == 3"><!--TODO: Change to enum-->
+         <label>
+           <input [disabled]="answer.isAnsweredQuestionnaire" [value]='answer.QuestionsAnswersId' type="checkbox" name="checkboxGroup_{{answer.QuestionId}}" id="checkboxGroup_{{answer.QuestionId}}" [(ngModel)]="answer.isAnsweredQuestion" >
+           {{answer.AnswerText}}
+         </label>
+       </div>
+       <div *ngIf="answer.QuestionTypeId == 4"><!--TODO: Change to enum-->
+         <label>
+           <input [disabled]="answer.isAnsweredQuestionnaire" [value]='answer.QuestionsAnswersId' type="radio" name="radioGroup_{{answer.QuestionId}}" id="radioGroup4_{{answer.QuestionId}}" [(ngModel)]="answer.isAnsweredQuestion && answer.QuestionsAnswersId" (change)="onSelectionChange(answer)">
+           {{answer.AnswerText}}
+         </label>
+       </div>
+     </div>
+   </div>
+  <div>
+    <button *ngIf="!isAnsweredQuestionnaire" class="btn btn-success" type="submit" (click)="saveQuestionnaire()">Save</button>
+    <button class="btn btn-primary" type="button" [routerLink]="['/dashboard/questionnaires']">Cancel</button>
+  </div>
+  <!--</form>-->
+</div>

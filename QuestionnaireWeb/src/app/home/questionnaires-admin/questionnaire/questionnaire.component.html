@@ -1,0 +1,19 @@
+<div class="col-md-8">
+  <h3>{{title}}</h3>
+  <form name="form" (ngSubmit)="f.form.valid && addQuestionnaire()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+      <label for="name">Name*</label>
+      <input type="text" class="form-control" name="name" id="name" [(ngModel)]="model.name" #name="ngModel" required />
+      <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+      <label for="description">Description*</label>
+      <textarea rows="8" cols="20" class="form-control" name="description" id="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
+      <div *ngIf="f.submitted && !description.valid" class="help-block">Last name is required</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Save</button>
+      <button type="button" [routerLink]="['/admin-panel/questionnaires']" class="btn btn-primary">Cancel</button>
+    </div>
+  </form>
+</div>

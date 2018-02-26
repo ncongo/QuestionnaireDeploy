@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let questionnaire of usersQuestionnaires; let i = index" (click)="showQuestionnaire(questionnaire)" style="cursor: pointer">
+          <td scope="row">{{i + 1}}</td>
+          <td>{{questionnaire.name}}</td>
+          <td>{{questionnaire.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

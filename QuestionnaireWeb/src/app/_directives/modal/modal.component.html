@@ -1,0 +1,24 @@
+<div class="container">
+  <!--<button type="button" style="display: none;" id="openModalButton" [hidden]="true" class="btn btn-info btn-xs" data-toggle="modal" data-target="#confirmationModal" ></button>-->
+
+  <!-- Modal -->
+  <div class="modal fade in" id="confirmationModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{{ title }}</h4>
+        </div>
+        <div class="modal-body" style="white-space: pre-line;">
+          <p>{{ message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="okButton" (click)="btnOkClicked()">{{ okText }}</button>
+          <button type="button" class="btn btn-info" id="cancelButton" data-dismiss="modal" (click)="btnCancelClicked()">{{ cancelText }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

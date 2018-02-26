@@ -1,0 +1,14 @@
+<div class="col-md-8">
+  <h3>Add new answer</h3>
+  <form name="form" (ngSubmit)="f.form.valid && addAnswer()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !text.valid }">
+      <label for="text">Answer text*</label>
+      <textarea rows="10" cols="20" class="form-control" name="text" id="text" [(ngModel)]="newAnswer.text" #text="ngModel" required ></textarea>
+      <div *ngIf="f.submitted && !text.valid" class="help-block">Answer text is required</div>
+    </div>
+    <div class="form-group">
+      <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Save</button>
+      <button type="button" [routerLink]="['/admin-panel/answers/', questionId]" class="btn btn-primary">Cancel</button>
+    </div>
+  </form>
+</div>

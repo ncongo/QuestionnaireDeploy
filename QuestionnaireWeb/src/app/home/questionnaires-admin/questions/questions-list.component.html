@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary pull-right" [routerLink]="['/admin-panel/question', questionnaireId]">Add new</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Question Text</th>
+          <th scope="col">Question Type</th>
+          <th style="width: 10%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of questionsList; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td *ngIf="question.QuestionTypeId == 1 || question.QuestionTypeId == 2">{{question.QuestionText}}</td>
+          <td *ngIf="question.QuestionTypeId == 3 || question.QuestionTypeId == 4"><a [routerLink]="['/admin-panel/answers/', question.QuestionId]">{{question.QuestionText}}</a></td>
+          <td>{{question.QuestionTypeName}}</td>
+          <td><button class="btn" (click)="deleteQuestion(question.QuestionnairesQuestionsId)"><span class="glyphicon glyphicon-trash"></span></button></td>
+        </tr>
+        <tr *ngIf="!questionsList || questionsList.length == 0" style="text-align:center">
+          <td colspan="4">No results</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="button" style="display: none;" id="openModalButton" [hidden]="true" class="btn btn-info btn-xs" data-toggle="modal" data-target="#confirmationModal" data-backdrop="static" data-keyboard="false" ></button>
+  <app-modal (confirmedDelete)="confirmedDelete($event)"></app-modal>
+</div>
